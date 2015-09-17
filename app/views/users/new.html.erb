@@ -1,0 +1,13 @@
+<h1>Welcome to the jungle! Start a new account:</h1>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+<p><%= error %></p>
+<% end %>
+<% end %>
+<form action="/users" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="user_email">Enter your email:</label>
+  <input type="text" name="users[email]" id="user_email">
+  <label for="user_password">Enter a password:</label>
+  <input type="password" name="users[password]" id="user_password">
+  <input type="submit" value="Hey! Ho! Lets go">
