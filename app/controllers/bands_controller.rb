@@ -1,4 +1,5 @@
 class BandsController < ApplicationController
+  before_action :verify_login
 
   def new
     render :new
@@ -9,11 +10,16 @@ class BandsController < ApplicationController
     if band.save
       redirect_to band_url(band)
     else
+      redirect_to bands_url
     end
 
   end
 
   def destroy
+    @band = Band.find(params[:id])
+    @band.destroy
+    flash[:success] = "#{@band.name} sucessfully deleted"
+    redirect_to bands_url
   end
 
   def index
@@ -26,8 +32,8 @@ class BandsController < ApplicationController
   end
 
   def update
-    @band = Band.new(band_params)
-    if @band.save
+    @band = Band.find(params[:id])
+    if @band.update(bands_params)
       redirect_to band_url()
     end
   end

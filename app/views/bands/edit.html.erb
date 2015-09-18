@@ -1,1 +1,15 @@
 <h3>Edit <%= @band.name %></h3>
+
+<form action="/bands/<%= @band.id %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name="bands[name]" value="<%= @band.name %>">
+  <br>
+  <input type="submit" value="Save changes">
+</form>
+<br>
+<form action="/bands/<%= @band.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Delete Permanently">
+</form>

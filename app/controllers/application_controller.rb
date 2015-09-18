@@ -19,4 +19,15 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
   end
+
+  def verify_login
+    return if logged_in?
+    redirect_to new_session_url
+  end
+
+  def logged_in?
+    current_user
+    return false if @current_user.nil?
+    @current_user.session_token == session[:session_token]
+  end
 end

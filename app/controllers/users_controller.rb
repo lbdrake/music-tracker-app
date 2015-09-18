@@ -19,14 +19,12 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
-  def user_params
-    params.require(:users).permit(:email, :password)
-  end
-
   def show
     render :show
   end
 
+  private
+  def user_params
+    params.require(:users).permit(:email, :password)
+  end
 end
